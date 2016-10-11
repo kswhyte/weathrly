@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/kswhyte/weathrly/issues"
   },
-  "homepage": "https://github.com/kswhyte/weathrly#readme"
+  "homepage": "https://github.com/kswhyte/weathrly#readme",
+  "devDependencies": {
+    "css-loader": "^0.25.0",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1"
+  }
 }
