@@ -1,4 +1,4 @@
-const sass = require('../styles/styles')
+const sass = require('./main')
 
  function hello() {
    console.log('welcome')
