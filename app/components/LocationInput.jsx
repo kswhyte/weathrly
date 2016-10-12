@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom')
 class LocationInput extends React.Component {
   render () {
     return (
-      <input id="location-input" placeholder="Location"></input>
+      <input id="location-input" placeholder="Location"/>
       // <SubmitButton />
     )
   }
