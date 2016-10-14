@@ -1,25 +1,31 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-// const LocationInput = require('./LocationInput')
-// const SubmitButton = require('./SubmitButton')
-const GetWeather = require('./GetWeather')
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+// const $ = require('jquery')
+// import axios from 'axios'
 
-class App extends React.Component {
+
+import DisplayWeather from './DisplayWeather'
+// const DisplayWeather = require('./DisplayWeather')
+
+
+// class App extends React.Component {
+export default class App extends React.Component {
+  // componentDidMount() {
+  //   debugger
+  //   let weather = axios.get('https://weatherly-api.herokuapp.com/api/weather/')
+  // }
   render () {
     return (
       <div>
         <h1 id="greeting">Welcome to Weathrly</h1>
         <h3 id="location-request">Enter a Location for Weathrly Conditions!</h3>
-        // <LocationInput />
-        // <SubmitButton />
-        <GetWeather/>
+        <DisplayWeather />
       </div>
     )
   }
 }
 
-ReactDOM.render( <App/>, document.getElementById('application'))
-// ReactDOM.render( <LocationInput />, document.getElementById('application'))
+
 
 
 module.exports = App
