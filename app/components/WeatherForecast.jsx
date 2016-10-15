@@ -58,7 +58,7 @@ export default class WeatherForecast extends React.Component {
     }
 
     return(
-      <div>
+      <div className='application-view'>
         <input id='location-input' placeholder='Location'
           value={this.state.location}
           onChange={(e) => this.setState({location: e.target.value}) } />
