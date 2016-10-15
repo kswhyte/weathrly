@@ -1,7 +1,28 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+@import './variables.scss';
 
 body {
-  font: 100% $font-stack;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  // flex-direction: column;
+  color: $secondary-color;
+}
+
+.application-view {
+  // margin: auto;
+}
+
+h1, h3, #location-input, #submit-button {
+  // padding: 20px;
+  margin: 20px auto;
+}
+
+h1 {
+  font-size: 30px;
   color: $primary-color;
+}
+
+ul {
+
 }

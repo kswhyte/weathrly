@@ -32,7 +32,6 @@ export default class WeatherForecast extends React.Component {
   renderEachDaysForecast(weatherInfo) {
     return weatherInfo.map(dayForecast => {
       let uniqueKey = dayForecast.location + dayForecast.date
-      let sunnyDay =
       return(
         <ul key={uniqueKey} setClass={this.configureStyling()}>
           <li>Date: {dayForecast.date}</li>
@@ -45,11 +44,11 @@ export default class WeatherForecast extends React.Component {
     })
   }
 
-  configureStyling() {
-    return(
-      //return a string for the classname
-    )
-  }
+  // configureStyling() {
+  //   return(
+  //   )
+  // }
+  //return a string for the classname
 
   render() {
     let weatherInfo;
@@ -59,7 +58,7 @@ export default class WeatherForecast extends React.Component {
     }
 
     return(
-      <div>
+      <div className='application-view'>
         <input id='location-input' placeholder='Location'
           value={this.state.location}
           onChange={(e) => this.setState({location: e.target.value}) } />
