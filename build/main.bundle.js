@@ -21575,7 +21575,7 @@
 
 	var _reactDom = __webpack_require__(34);
 
-	var _WeatherForecast = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./WeatherForecast\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _WeatherForecast = __webpack_require__(173);
 
 	var _WeatherForecast2 = _interopRequireDefault(_WeatherForecast);
 
@@ -21623,7 +21623,195 @@
 	exports.default = App;
 
 /***/ },
-/* 173 */,
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(34);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var $ = __webpack_require__(174);
+
+	var WeatherForecast = function (_React$Component) {
+	  _inherits(WeatherForecast, _React$Component);
+
+	  function WeatherForecast() {
+	    _classCallCheck(this, WeatherForecast);
+
+	    var _this = _possibleConstructorReturn(this, (WeatherForecast.__proto__ || Object.getPrototypeOf(WeatherForecast)).call(this));
+
+	    _this.state = {
+	      source: 'https://weatherly-api.herokuapp.com/api/weather/',
+	      location: '',
+	      weather: []
+	    };
+	    return _this;
+	  }
+
+	  _createClass(WeatherForecast, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      this.setState({ location: localStorage.getItem('lastLocationSubmitted') || '' }, function () {
+	        return _this2.locationSubmitted();
+	      });
+	    }
+	  }, {
+	    key: 'locationSubmitted',
+	    value: function locationSubmitted() {
+	      var _this3 = this;
+
+	      if (this.state.location) {
+	        $.get(this.state.source + this.state.location).then(function (weatherInfo) {
+	          _this3.setState({ weather: weatherInfo.slice(0, 7) });
+	        });
+	      }
+	      this.persistLastLocation();
+	    }
+	  }, {
+	    key: 'persistLastLocation',
+	    value: function persistLastLocation() {
+	      localStorage.setItem('lastLocationSubmitted', this.state.location);
+	    }
+	  }, {
+	    key: 'renderEachDaysForecast',
+	    value: function renderEachDaysForecast(weatherInfo) {
+	      var _this4 = this;
+
+	      return weatherInfo.map(function (dayForecast) {
+	        var uniqueKey = dayForecast.location + dayForecast.date;
+	        return _react2.default.createElement(
+	          'ul',
+	          { key: uniqueKey, setClass: _this4.configureStyling() },
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Date: ',
+	            dayForecast.date
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Type: ',
+	            dayForecast.weatherType.type
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Chance: ',
+	            dayForecast.weatherType.chance
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'TempHigh: ',
+	            dayForecast.temp.high
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'TempLow: ',
+	            dayForecast.temp.low
+	          )
+	        );
+	      });
+	    }
+
+	    // configureStyling() {
+	    //   return(
+	    //   )
+	    // }
+	    //return a string for the classname
+
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this5 = this;
+
+	      var weatherInfo = void 0;
+
+	      if (this.state.weather.length > 0) {
+	        weatherInfo = this.renderEachDaysForecast(this.state.weather);
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'application-view' },
+	        _react2.default.createElement('input', { id: 'location-input', placeholder: 'Location',
+	          value: this.state.location,
+	          onChange: function onChange(e) {
+	            return _this5.setState({ location: e.target.value });
+	          } }),
+	        _react2.default.createElement(
+	          'button',
+	          { id: 'submit-button',
+	            onClick: function onClick() {
+	              return _this5.locationSubmitted();
+	            } },
+	          'Submit Location'
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          this.state.location
+	        ),
+	        _react2.default.createElement(
+	          'section',
+	          null,
+	          weatherInfo
+	        )
+	      );
+	    }
+	  }]);
+
+	  return WeatherForecast;
+	}(_react2.default.Component);
+
+	// module.exports = WeatherForecast
+
+	//create function that takes return parsed data as argument
+	//iterate though, parse through it and, for each render to html
+
+	//create function that maps through array or object and returns different attributes from the weather array
+	//return a 'render' of lis with temp, etc.
+	//or use lodash
+
+
+	// class MyComponent extends React.Component {
+	//   render() {
+	//     return <div className={this.props.className}/>;
+	//   }
+	// }
+
+	// React 0.14 introduced a new syntax for defining components, as functions of props:
+	//
+	// const MyComponent = props => (
+	//   <div className={props.className}/>
+	// );
+
+
+	exports.default = WeatherForecast;
+
+/***/ },
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23645,7 +23833,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js!./styles.scss\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var content = __webpack_require__(181);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(179)(content, {});
@@ -23663,6 +23851,20 @@
 		// When the module is disposed, remove the <style> tags
 		module.hot.dispose(function() { update(); });
 	}
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(178)();
+	// imports
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Catamaran|Montserrat|Oswald);", ""]);
+
+	// module
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  margin: auto;\n  text-align: center;\n  color: #341244; }\n\nh1, h3, #location-input, #submit-button {\n  margin: 20px auto; }\n\nh1 {\n  font-size: 30px;\n  color: #0264ab; }\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

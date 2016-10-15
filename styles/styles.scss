@@ -24,5 +24,38 @@ h1 {
 }
 
 ul {
+  color: $primary-color;
+}
 
+.sunny-high {
+  color: $sunny-high;
+}
+.cloudy-high {
+  color: $cloudy-high;
+}
+.windy-high {
+  color: $windy-high;
+}
+.thunderstorms-high {
+  color: $thunderstorms-high;
+}
+.rain-high {
+  color: $rain-high;
+}
+// ___________________
+
+.sunny-low {
+  color: $sunny-low;
+}
+.cloudy-low {
+  color: $cloudy-low;
+}
+.windy-low {
+  color: $windy-low;
+}
+.thunderstorms-low {
+  color: $thunderstorms-low;
+}
+.rain-low {
+  color: $rain-low;
 }

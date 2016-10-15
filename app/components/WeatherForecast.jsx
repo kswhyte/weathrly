@@ -33,7 +33,7 @@ export default class WeatherForecast extends React.Component {
     return weatherInfo.map(dayForecast => {
       let uniqueKey = dayForecast.location + dayForecast.date
       return(
-        <ul key={uniqueKey} setClass={this.configureStyling()}>
+        <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
           <li>Date: {dayForecast.date}</li>
           <li>Type: {dayForecast.weatherType.type}</li>
           <li>Chance: {dayForecast.weatherType.chance}</li>
@@ -44,11 +44,34 @@ export default class WeatherForecast extends React.Component {
     })
   }
 
-  // configureStyling() {
-  //   return(
-  //   )
-  // }
-  //return a string for the classname
+  configureTypeStyling(dayForecast) {
+    switch (dayForecast.weatherType.type) {
+      case "sunny":
+        return 'sunny-'
+        break
+      case "cloudy":
+        return 'cloudy-'
+        break
+      case "windy":
+        return 'windy-'
+        break
+      case "thunderstorms":
+        return 'thunderstorms-'
+        break
+      case "rain":
+        return 'rain-'
+        break
+      default:
+        return ''
+    }
+  }
+  configureTempStyling(dayForecast) {
+    if (dayForecast.temp.high >= 60) {
+        return 'high'
+    } else {
+      return 'low'
+    }
+  }
 
   render() {
     let weatherInfo;
@@ -56,6 +79,7 @@ export default class WeatherForecast extends React.Component {
     if (this.state.weather.length > 0) {
       weatherInfo = this.renderEachDaysForecast(this.state.weather);
     }
+
 
     return(
       <div className='application-view'>
