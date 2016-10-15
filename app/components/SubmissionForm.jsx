@@ -22,12 +22,16 @@ export default class DisplayWeather extends React.Component {
           // maxTemp: results[0].temp.high,
           // minTemp: results[0].temp.low
       })
+      debugger
+      console.log(results)
     })
   }
+//create function that takes return parsed data as argument
+//iterate though, parse through it and, for each render to html
 
   //create function that maps through array or object and returns different attributes from the weather array
   //return a 'render' of lis with temp, etc.
-  //or use lodash 
+  //or use lodash
 
   // componentDidMount() {
   // }
@@ -45,22 +49,3 @@ export default class DisplayWeather extends React.Component {
   }
 
 }
-
-
-// module.exports = DisplayWeather
-
-
-
-
-
-// class MyComponent extends React.Component {
-//   render() {
-//     return <div className={this.props.className}/>;
-//   }
-// }
-
-// React 0.14 introduced a new syntax for defining components, as functions of props:
-//
-// const MyComponent = props => (
-//   <div className={props.className}/>
-// );

@@ -1,21 +1,21 @@
 import React from 'react'
 import { render } from 'react-dom'
 import App from './components/App'
+
 const $ = require('jquery')
-
-
-// const React = require('react')
-// const ReactDOM = require('react-dom')
-
 require('./components/App')
-// require('./styles/reset.css')
-// require('./styles/styles.scss')
+require('../styles/reset.css')
+require('../styles/styles.scss')
+
+
 
 render( <App/>, document.getElementById('application'))
 // ReactDOM.render( <App/>, document.getElementById('application'))
 
 
 
+// const React = require('react')
+// const ReactDOM = require('react-dom')
 
 
 
