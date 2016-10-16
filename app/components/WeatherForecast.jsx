@@ -35,8 +35,8 @@ export default class WeatherForecast extends React.Component {
       return(
         <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
           <li>Date: {dayForecast.date}</li>
-          <li>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
-          <li>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
+          <li className='summary'>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
+          <li className='summary'>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
           <li>High: {dayForecast.temp.high}</li>
           <li>Low: {dayForecast.temp.low}</li>
         </ul>
@@ -65,9 +65,9 @@ export default class WeatherForecast extends React.Component {
         return ''
     }
   }
-  
+
   configureTempStyling(dayForecast) {
-    if (dayForecast.temp.high >= 60) {
+    if (dayForecast.temp.high >= 70) {
         return 'high'
     } else {
       return 'low'
@@ -88,7 +88,7 @@ export default class WeatherForecast extends React.Component {
           onChange={(e) => this.setState({location: e.target.value}) } />
         <button id='submit-button'
           onClick={() => this.locationSubmitted()} >Submit Location</button>
-        <h3>{this.state.location}</h3>
+        <h3 className='location-title'>{this.state.location.toUpperCase()}</h3>
         <section>{weatherInfo}</section>
       </div>
     )
