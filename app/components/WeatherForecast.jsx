@@ -34,7 +34,9 @@ export default class WeatherForecast extends React.Component {
       let uniqueKey = dayForecast.location + dayForecast.date
       return(
         <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
-          <li className={this.configureTypeStyling(dayForecast) + 'icon'}></li>
+
+          <li><img className={this.configureTypeStyling(dayForecast) + '-icon'} src={this.configureIconSource(dayForecast)} /></li>
+
           <li>Date: {dayForecast.date}</li>
           <li className='summary'>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
           <li className='summary'>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
@@ -64,22 +66,22 @@ export default class WeatherForecast extends React.Component {
   configureTypeStyling(dayForecast) {
     switch (dayForecast.weatherType.type) {
       case "sunny":
-        return 'sunny-'
+        return 'sunny'
         break
       case "cloudy":
-        return 'cloudy-'
+        return 'cloudy'
         break
       case "windy":
-        return 'windy-'
+        return 'windy'
         break
       case "thunder storms":
-        return 'thunderstorms-'
+        return 'thunderstorms'
         break
       case "rain":
-        return 'rain-'
+        return 'rain'
         break
       case "snow":
-        return 'snow-'
+        return 'snow'
         break
       default:
         return ''
@@ -88,9 +90,34 @@ export default class WeatherForecast extends React.Component {
 
   configureTempStyling(dayForecast) {
     if (dayForecast.temp.high >= 70) {
-        return 'high'
+        return '-high'
     } else {
-      return 'low'
+      return '-low'
+    }
+  }
+
+  configureIconSource(dayForecast) {
+    switch (dayForecast.weatherType.type) {
+      case "sunny":
+        return '../images/svg/sunny.svg'
+        break
+      case "cloudy":
+        return '../images/svg/cloudy.svg'
+        break
+      case "windy":
+        return '../images/svg/wind.svg'
+        break
+      case "thunder storms":
+        return '../images/svg/thunderstorm.svg'
+        break
+      case "rain":
+        return '../images/svg/rain.svg'
+        break
+      case "snow":
+        return '../images/svg/snowflake.svg'
+        break
+      default:
+        return ''
     }
   }
 
@@ -100,7 +127,6 @@ export default class WeatherForecast extends React.Component {
     if (this.state.weather.length > 0) {
       weatherInfo = this.renderEachDaysForecast(this.state.weather);
     } else {
-       // call a function to render an error message
       weatherInfo = this.renderLocationErrorMsg()
     }
 

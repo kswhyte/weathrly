@@ -1,5 +1,11 @@
 @import './variables.scss';
 
+#greeting {
+  top-margin: 30px;
+  font-family: $oswald;
+  font-size: 4em;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -8,17 +14,12 @@ body {
   font-family: $catamaran;
 }
 
-.application-view {
-  // margin: auto;
-}
-
 .location-title {
   color: red;
   font-family: $oswald;
 }
 
 h1, h3, #location-input, #submit-button {
-  // padding: 20px;
   margin: 20px auto;
 }
 
@@ -44,32 +45,22 @@ li {
   border-bottom: solid #9d9d9d 1.5px;
 }
 
-// .sunny-icon {
-//   background: url('images/svg/sunny.svg') cover no-repeat;
-//
-// }
+.windy-icon, .thunderstorms-icon, .rain-icon, .snow-icon {
+  width: 40px;
+  height: 40px;
+}
 
-// .cloudy-icon {
-//   background: $cloudy-icon cover no-repeat;
-// }
+.sunny-icon {
+  width: 45px;
+  height: 45px;
+}
 
-// .windy-icon {
-//   background: $windy-icon cover no-repeat;
-// }
+.cloudy-icon {
+  width: 50px;
+  height: 50px;
+}
 
-// .thunderstorms-icon {
-//   background: $thunderstorms-icon cover no-repeat;
-// }
-//
-// .rain-icon {
-//   background: $rain-icon cover no-repeat;
-// }
-
-// .snow-icon {
-//   background: $snow-icon cover no-repeat;
-// }
-
-// ____________________
+// ___________________________
 
 .sunny-high {
   color: $sunny-high;
