@@ -32,23 +32,45 @@ export default class WeatherForecast extends React.Component {
   renderEachDaysForecast(weatherInfo) {
     return weatherInfo.map(dayForecast => {
       let uniqueKey = dayForecast.location + dayForecast.date
-      let sunnyDay =
       return(
-        <ul key={uniqueKey} setClass={this.configureStyling()}>
+        <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
           <li>Date: {dayForecast.date}</li>
-          <li>Type: {dayForecast.weatherType.type}</li>
-          <li>Chance: {dayForecast.weatherType.chance}</li>
-          <li>TempHigh: {dayForecast.temp.high}</li>
-          <li>TempLow: {dayForecast.temp.low}</li>
+          <li>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
+          <li>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
+          <li>High: {dayForecast.temp.high}</li>
+          <li>Low: {dayForecast.temp.low}</li>
         </ul>
       )
     })
   }
 
-  configureStyling() {
-    return(
-      //return a string for the classname
-    )
+  configureTypeStyling(dayForecast) {
+    switch (dayForecast.weatherType.type) {
+      case "sunny":
+        return 'sunny-'
+        break
+      case "cloudy":
+        return 'cloudy-'
+        break
+      case "windy":
+        return 'windy-'
+        break
+      case "thunder storms":
+        return 'thunderstorms-'
+        break
+      case "rain":
+        return 'rain-'
+        break
+      default:
+        return ''
+    }
+  }
+  configureTempStyling(dayForecast) {
+    if (dayForecast.temp.high >= 60) {
+        return 'high'
+    } else {
+      return 'low'
+    }
   }
 
   render() {
@@ -58,8 +80,9 @@ export default class WeatherForecast extends React.Component {
       weatherInfo = this.renderEachDaysForecast(this.state.weather);
     }
 
+
     return(
-      <div>
+      <div className='application-view'>
         <input id='location-input' placeholder='Location'
           value={this.state.location}
           onChange={(e) => this.setState({location: e.target.value}) } />
