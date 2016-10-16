@@ -39,13 +39,41 @@ li {
   font-family: $oswald;
 }
 
-.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low {
+.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low, .snow-high, .snow-low {
   padding: 10px;
   border-bottom: solid #9d9d9d 1.5px;
 }
 
+// .sunny-icon {
+//   background: url('images/svg/sunny.svg') cover no-repeat;
+//
+// }
+
+// .cloudy-icon {
+//   background: $cloudy-icon cover no-repeat;
+// }
+
+// .windy-icon {
+//   background: $windy-icon cover no-repeat;
+// }
+
+// .thunderstorms-icon {
+//   background: $thunderstorms-icon cover no-repeat;
+// }
+//
+// .rain-icon {
+//   background: $rain-icon cover no-repeat;
+// }
+
+// .snow-icon {
+//   background: $snow-icon cover no-repeat;
+// }
+
+// ____________________
+
 .sunny-high {
   color: $sunny-high;
+
 }
 
 .cloudy-high {
@@ -62,6 +90,10 @@ li {
 
 .rain-high {
   color: $rain-high;
+}
+
+.snow-high {
+  color: $snow-high;
 }
 // ___________________
 
@@ -83,4 +115,8 @@ li {
 
 .rain-low {
   color: $rain-low;
+}
+
+.snow-low {
+  color: $snow-low;
 }

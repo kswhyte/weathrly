@@ -34,10 +34,11 @@ export default class WeatherForecast extends React.Component {
       let uniqueKey = dayForecast.location + dayForecast.date
       return(
         <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
+          <li className={this.configureTypeStyling(dayForecast) + 'icon'}></li>
           <li>Date: {dayForecast.date}</li>
           <li className='summary'>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
           <li className='summary'>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
-          <li>High: {dayForecast.temp.high}</li>
+          <li >High: {dayForecast.temp.high}</li>
           <li>Low: {dayForecast.temp.low}</li>
         </ul>
       )
@@ -76,6 +77,9 @@ export default class WeatherForecast extends React.Component {
         break
       case "rain":
         return 'rain-'
+        break
+      case "snow":
+        return 'snow-'
         break
       default:
         return ''
