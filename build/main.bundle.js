@@ -64,96 +64,6 @@
 	__webpack_require__(180);
 
 	(0, _reactDom.render)(_react2.default.createElement(_App2.default, null), document.getElementById('application'));
-	// ReactDOM.render( <App/>, document.getElementById('application'))
-
-
-	// const React = require('react')
-	// const ReactDOM = require('react-dom')
-
-
-	// require('./main')
-
-	//ALL CODE BELOW IS FROM THE CHAT BOX DEMO
-
-
-	// const express = require('express');
-	// const fs = require('fs');
-	// const app = express();
-	// const http = require('http').Server(app);
-	// const cors = require('express-cors');
-	// const bodyParser = require('body-parser');
-	// app.use(cors());
-	// app.use(bodyParser.json());
-	// app.use(bodyParser.urlencoded({ extended: true }));
-	// app.use(express.static('public'));
-	// app.set('port', process.env.PORT || 3000);
-	// app.locals.title = 'Chat Box';
-	// app.locals.messages = [];
-	//
-	// app.get('/', (request, response) => {
-	//   fs.readFile(`${__dirname}/public/index.html`, (err, file) => {
-	//     response.send(file);
-	//   });
-	// });
-	//
-	// app.get('/messages', (request, response) => {
-	//   response.send({ messages: app.locals.messages });
-	// });
-	//
-	// app.get('/messages/:id', (request, response) => {
-	//   const { id } = request.params;
-	//   const message = app.locals.messages.find(m => m.id == id);
-	//   if (message) { return response.send({ message }); }
-	//   return response.sendStatus(404);
-	// });
-	//
-	// app.post('/messages', (request, response) => {
-	//   const message = request.body;
-	//
-	//   for (let requiredParameter of ['user', 'message']) {
-	//     if (!message[requiredParameter]) {
-	//       return response
-	//         .status(422)
-	//         .send({ error: `Expected format: { user: <String>, message: <String> }. You're missing a "${requiredParameter}" property.` });
-	//     }
-	//   }
-	//
-	//   message['id'] = message.id || Date.now();
-	//   app.locals.messages.push(message);
-	//   response.status(201).send({message: message });
-	// });
-	//
-	// app.put('/messages/:id', (request, response) => {
-	//   const { message } = request.body;
-	//   const { id } = request.params;
-	//   const index = app.locals.messages.findIndex((m) => m.id == id);
-	//
-	//   if (index === -1) { return response.sendStatus(404); }
-	//
-	//   const oldMessage = app.locals.messages[index];
-	//   app.locals.messages[index] = Object.assign(oldMessage, message);
-	//
-	//   return response.sendStatus(204);
-	// });
-	//
-	// app.delete('/messages/:id', (request, response) => {
-	//   const { id } = request.params;
-	//   if (!app.locals.messages.find((m) => m.id == id)) {
-	//     return response.status(404).send({
-	//       error: 'There is no message with the "id" of ${id}.'
-	//     });
-	//   }
-	//   app.locals.messages = app.locals.messages.filter((m) => m.id != id);
-	//   response.sendStatus(204);
-	// });
-	//
-	// if (!module.parent) {
-	//   app.listen(app.get('port'), () => {
-	//     console.log(`${app.locals.title} is running on ${app.get('port')}.`);
-	//   });
-	// }
-	//
-	// module.exports = app;
 
 /***/ },
 /* 1 */
@@ -21701,7 +21611,8 @@
 	        var uniqueKey = dayForecast.location + dayForecast.date;
 	        return _react2.default.createElement(
 	          'ul',
-	          { key: uniqueKey, setClass: _this4.configureStyling() },
+	          { key: uniqueKey, className: _this4.configureTypeStyling(dayForecast) + _this4.configureTempStyling(dayForecast) },
+	          _react2.default.createElement('li', { className: _this4.configureTypeStyling(dayForecast) + 'icon' }),
 	          _react2.default.createElement(
 	            'li',
 	            null,
@@ -21710,38 +21621,108 @@
 	          ),
 	          _react2.default.createElement(
 	            'li',
-	            null,
-	            'Type: ',
-	            dayForecast.weatherType.type
+	            { className: 'summary' },
+	            'Today will be: ',
+	            dayForecast.weatherType.type.toUpperCase()
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { className: 'summary' },
+	            'Chance of Rain: ',
+	            Math.round(dayForecast.weatherType.chance * 100) + '%'
 	          ),
 	          _react2.default.createElement(
 	            'li',
 	            null,
-	            'Chance: ',
-	            dayForecast.weatherType.chance
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'TempHigh: ',
+	            'High: ',
 	            dayForecast.temp.high
 	          ),
 	          _react2.default.createElement(
 	            'li',
 	            null,
-	            'TempLow: ',
+	            'Low: ',
 	            dayForecast.temp.low
 	          )
 	        );
 	      });
 	    }
-
-	    // configureStyling() {
-	    //   return(
-	    //   )
-	    // }
-	    //return a string for the classname
-
+	  }, {
+	    key: 'renderLocationErrorMsg',
+	    value: function renderLocationErrorMsg() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Sorry, there is NO DATA for that location.'
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Please Choose out of our Four Valid Locations:'
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Castle-Rock'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Denver'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'San-Diego'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'San-Francisco'
+	          )
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'configureTypeStyling',
+	    value: function configureTypeStyling(dayForecast) {
+	      switch (dayForecast.weatherType.type) {
+	        case "sunny":
+	          return 'sunny-';
+	          break;
+	        case "cloudy":
+	          return 'cloudy-';
+	          break;
+	        case "windy":
+	          return 'windy-';
+	          break;
+	        case "thunder storms":
+	          return 'thunderstorms-';
+	          break;
+	        case "rain":
+	          return 'rain-';
+	          break;
+	        case "snow":
+	          return 'snow-';
+	          break;
+	        default:
+	          return '';
+	      }
+	    }
+	  }, {
+	    key: 'configureTempStyling',
+	    value: function configureTempStyling(dayForecast) {
+	      if (dayForecast.temp.high >= 70) {
+	        return 'high';
+	      } else {
+	        return 'low';
+	      }
+	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -21751,6 +21732,9 @@
 
 	      if (this.state.weather.length > 0) {
 	        weatherInfo = this.renderEachDaysForecast(this.state.weather);
+	      } else {
+	        // call a function to render an error message
+	        weatherInfo = this.renderLocationErrorMsg();
 	      }
 
 	      return _react2.default.createElement(
@@ -21771,8 +21755,8 @@
 	        ),
 	        _react2.default.createElement(
 	          'h3',
-	          null,
-	          this.state.location
+	          { className: 'location-title' },
+	          this.state.location.toUpperCase()
 	        ),
 	        _react2.default.createElement(
 	          'section',
@@ -21785,29 +21769,6 @@
 
 	  return WeatherForecast;
 	}(_react2.default.Component);
-
-	// module.exports = WeatherForecast
-
-	//create function that takes return parsed data as argument
-	//iterate though, parse through it and, for each render to html
-
-	//create function that maps through array or object and returns different attributes from the weather array
-	//return a 'render' of lis with temp, etc.
-	//or use lodash
-
-
-	// class MyComponent extends React.Component {
-	//   render() {
-	//     return <div className={this.props.className}/>;
-	//   }
-	// }
-
-	// React 0.14 introduced a new syntax for defining components, as functions of props:
-	//
-	// const MyComponent = props => (
-	//   <div className={props.className}/>
-	// );
-
 
 	exports.default = WeatherForecast;
 
@@ -23861,7 +23822,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Catamaran|Montserrat|Oswald);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  margin: auto;\n  text-align: center;\n  color: #341244; }\n\nh1, h3, #location-input, #submit-button {\n  margin: 20px auto; }\n\nh1 {\n  font-size: 30px;\n  color: #0264ab; }\n", ""]);
+	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  margin: auto;\n  text-align: center;\n  font-family: \"Catamaran\", sans-serif; }\n\n.location-title {\n  color: red;\n  font-family: \"Oswald\", sans-serif; }\n\nh1, h3, #location-input, #submit-button {\n  margin: 20px auto; }\n\nh1 {\n  font-size: 30px;\n  color: #0264ab; }\n\nul {\n  color: #0264ab; }\n\nli {\n  padding: 3px; }\n\n.summary {\n  font-family: \"Oswald\", sans-serif; }\n\n.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low, .snow-high, .snow-low {\n  padding: 10px;\n  border-bottom: solid #9d9d9d 1.5px; }\n\n.sunny-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/sunny.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.cloudy-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/cloudy.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.thunderstorms-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/thunderstorm.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.rain-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/sun.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.sunny-high {\n  color: #f1e700; }\n\n.cloudy-high {\n  color: #4f4c4c; }\n\n.windy-high {\n  color: #4cb33b; }\n\n.thunderstorms-high {\n  color: #7b0a9d; }\n\n.rain-high {\n  color: #0264ab; }\n\n.snow-high {\n  color: #00d1ab; }\n\n.sunny-low {\n  color: #ddd87d; }\n\n.cloudy-low {\n  color: #777575; }\n\n.windy-low {\n  color: #a4d79b; }\n\n.thunderstorms-low {\n  color: #4c2e5b; }\n\n.rain-low {\n  color: #467ba2; }\n\n.snow-low {\n  color: #279c7c; }\n", ""]);
 
 	// exports
 

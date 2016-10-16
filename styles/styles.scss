@@ -1,20 +1,29 @@
 @import './variables.scss';
 
+#greeting {
+  top-margin: 30px;
+  font-family: $oswald;
+  font-size: 4em;
+}
+
+span {
+  color: $secondary-color;
+}
+
 body {
   display: flex;
   justify-content: center;
   margin: auto;
   text-align: center;
-  // flex-direction: column;
-  color: $secondary-color;
+  font-family: $catamaran;
 }
 
-.application-view {
-  // margin: auto;
+.location-title {
+  color: red;
+  font-family: $oswald;
 }
 
 h1, h3, #location-input, #submit-button {
-  // padding: 20px;
   margin: 20px auto;
 }
 
@@ -27,35 +36,82 @@ ul {
   color: $primary-color;
 }
 
+li {
+  padding: 3px;
+}
+
+.summary {
+  font-family: $oswald;
+}
+
+.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low, .snow-high, .snow-low {
+  padding: 10px;
+  border-bottom: solid #9d9d9d 1.5px;
+}
+
+.windy-icon, .thunderstorms-icon, .rain-icon, .snow-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.sunny-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.cloudy-icon {
+  width: 50px;
+  height: 50px;
+}
+
+// ___________________________
+
 .sunny-high {
   color: $sunny-high;
+
 }
+
 .cloudy-high {
   color: $cloudy-high;
 }
+
 .windy-high {
   color: $windy-high;
 }
+
 .thunderstorms-high {
   color: $thunderstorms-high;
 }
+
 .rain-high {
   color: $rain-high;
+}
+
+.snow-high {
+  color: $snow-high;
 }
 // ___________________
 
 .sunny-low {
   color: $sunny-low;
 }
+
 .cloudy-low {
   color: $cloudy-low;
 }
+
 .windy-low {
   color: $windy-low;
 }
+
 .thunderstorms-low {
   color: $thunderstorms-low;
 }
+
 .rain-low {
   color: $rain-low;
+}
+
+.snow-low {
+  color: $snow-low;
 }

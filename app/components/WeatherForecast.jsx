@@ -34,43 +34,90 @@ export default class WeatherForecast extends React.Component {
       let uniqueKey = dayForecast.location + dayForecast.date
       return(
         <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
+
+          <li><img className={this.configureTypeStyling(dayForecast) + '-icon'} src={this.configureIconSource(dayForecast)} /></li>
+
           <li>Date: {dayForecast.date}</li>
-          <li>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
-          <li>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
-          <li>High: {dayForecast.temp.high}</li>
+          <li className='summary'>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
+          <li className='summary'>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
+          <li >High: {dayForecast.temp.high}</li>
           <li>Low: {dayForecast.temp.low}</li>
         </ul>
       )
     })
   }
 
+  renderLocationErrorMsg() {
+    return(
+      <div>
+        <h3>Sorry, there is NO DATA for that location.</h3>
+        <h3>Please Choose out of our Four Valid Locations:</h3>
+        <ul>
+          <li>Castle-Rock</li>
+          <li>Denver</li>
+          <li>San-Diego</li>
+          <li>San-Francisco</li>
+        </ul>
+      </div>
+    )
+  }
+
+
   configureTypeStyling(dayForecast) {
     switch (dayForecast.weatherType.type) {
       case "sunny":
-        return 'sunny-'
+        return 'sunny'
         break
       case "cloudy":
-        return 'cloudy-'
+        return 'cloudy'
         break
       case "windy":
-        return 'windy-'
+        return 'windy'
         break
       case "thunder storms":
-        return 'thunderstorms-'
+        return 'thunderstorms'
         break
       case "rain":
-        return 'rain-'
+        return 'rain'
+        break
+      case "snow":
+        return 'snow'
         break
       default:
         return ''
     }
   }
-  
+
   configureTempStyling(dayForecast) {
-    if (dayForecast.temp.high >= 60) {
-        return 'high'
+    if (dayForecast.temp.high >= 70) {
+        return '-high'
     } else {
-      return 'low'
+      return '-low'
+    }
+  }
+
+  configureIconSource(dayForecast) {
+    switch (dayForecast.weatherType.type) {
+      case "sunny":
+        return '../images/svg/sunny.svg'
+        break
+      case "cloudy":
+        return '../images/svg/cloudy.svg'
+        break
+      case "windy":
+        return '../images/svg/wind.svg'
+        break
+      case "thunder storms":
+        return '../images/svg/thunderstorm.svg'
+        break
+      case "rain":
+        return '../images/svg/rain.svg'
+        break
+      case "snow":
+        return '../images/svg/snowflake.svg'
+        break
+      default:
+        return ''
     }
   }
 
@@ -79,6 +126,8 @@ export default class WeatherForecast extends React.Component {
 
     if (this.state.weather.length > 0) {
       weatherInfo = this.renderEachDaysForecast(this.state.weather);
+    } else {
+      weatherInfo = this.renderLocationErrorMsg()
     }
 
     return(
@@ -88,7 +137,7 @@ export default class WeatherForecast extends React.Component {
           onChange={(e) => this.setState({location: e.target.value}) } />
         <button id='submit-button'
           onClick={() => this.locationSubmitted()} >Submit Location</button>
-        <h3>{this.state.location}</h3>
+        <h3 className='location-title'>{this.state.location.toUpperCase()}</h3>
         <section>{weatherInfo}</section>
       </div>
     )
