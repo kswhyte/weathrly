@@ -44,6 +44,21 @@ export default class WeatherForecast extends React.Component {
     })
   }
 
+  renderLocationErrorMsg() {
+    return(
+      <div>
+        <h3>Sorry, there is NO DATA for that location.</h3>
+        <h3>Please Choose out of our Four Valid Locations:</h3>
+        <ul>
+          <li>Castle-Rock</li>
+          <li>Denver</li>
+          <li>San-Diego</li>
+          <li>San-Francisco</li>
+        </ul>
+      </div>
+    )
+  }
+
   configureTypeStyling(dayForecast) {
     switch (dayForecast.weatherType.type) {
       case "sunny":
@@ -78,6 +93,9 @@ export default class WeatherForecast extends React.Component {
 
     if (this.state.weather.length > 0) {
       weatherInfo = this.renderEachDaysForecast(this.state.weather);
+    } else {
+      // call a function to render an error message
+      weatherInfo = this.renderLocationErrorMsg()
     }
 
 
