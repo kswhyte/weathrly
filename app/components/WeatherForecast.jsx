@@ -65,6 +65,7 @@ export default class WeatherForecast extends React.Component {
         return ''
     }
   }
+  
   configureTempStyling(dayForecast) {
     if (dayForecast.temp.high >= 60) {
         return 'high'
@@ -80,7 +81,6 @@ export default class WeatherForecast extends React.Component {
       weatherInfo = this.renderEachDaysForecast(this.state.weather);
     }
 
-
     return(
       <div className='application-view'>
         <input id='location-input' placeholder='Location'
@@ -95,30 +95,3 @@ export default class WeatherForecast extends React.Component {
   }
 
 }
-
-
-// module.exports = WeatherForecast
-
-//create function that takes return parsed data as argument
-//iterate though, parse through it and, for each render to html
-
-//create function that maps through array or object and returns different attributes from the weather array
-//return a 'render' of lis with temp, etc.
-//or use lodash
-
-
-
-
-
-
-// class MyComponent extends React.Component {
-//   render() {
-//     return <div className={this.props.className}/>;
-//   }
-// }
-
-// React 0.14 introduced a new syntax for defining components, as functions of props:
-//
-// const MyComponent = props => (
-//   <div className={props.className}/>
-// );
