@@ -127,10 +127,10 @@ export default class WeatherForecast extends React.Component {
     }
     return(
       <div className='application-view'>
-        <input id='location-input' placeholder='Location'
+        <input aria-label="location input" id='location-input' placeholder='Location'
           value={this.state.location}
           onChange={(e) => this.setState({location: e.target.value}) } />
-        <button id='submit-button'
+        <button aria-label="submit location button" id='submit-button'
           onClick={() => this.locationSubmitted()} >Submit Location</button>
         <h3 className='location-title'>{this.state.location.toUpperCase()}</h3>
         <section>{weatherInfo}</section>
