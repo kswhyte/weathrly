@@ -21512,21 +21512,6 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          { id: 'greeting' },
-	          'Welcome to ',
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            'Weathrly'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          { id: 'location-request' },
-	          'Enter or Change your Location for Weathrly Conditions!'
-	        ),
 	        _react2.default.createElement(_WeatherForecast2.default, null)
 	      );
 	    }
@@ -21620,7 +21605,7 @@
 	          _react2.default.createElement(
 	            'li',
 	            null,
-	            _react2.default.createElement('img', { className: _this4.configureTypeStyling(dayForecast) + '-icon', src: _this4.configureIconSource(dayForecast) })
+	            _react2.default.createElement('img', { className: _this4.configureTypeStyling(dayForecast) + '-icon', src: _this4.configureIconSource(dayForecast), 'aria-label': _this4.configureAriaLabel(dayForecast) })
 	          ),
 	          _react2.default.createElement(
 	            'li',
@@ -21669,7 +21654,12 @@
 	        _react2.default.createElement(
 	          'h3',
 	          null,
-	          'Please Choose out of our Four Valid Locations:'
+	          'Please Choose out of our ',
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            '4 Valid Locations:'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'ul',
@@ -21759,6 +21749,32 @@
 	      }
 	    }
 	  }, {
+	    key: 'configureAriaLabel',
+	    value: function configureAriaLabel(dayForecast) {
+	      switch (dayForecast.weatherType.type) {
+	        case "sunny":
+	          return 'sun icon';
+	          break;
+	        case "cloudy":
+	          return 'cloud icon';
+	          break;
+	        case "windy":
+	          return 'wind icon';
+	          break;
+	        case "thunder storms":
+	          return 'thunderstorm icon';
+	          break;
+	        case "rain":
+	          return 'rain icon';
+	          break;
+	        case "snow":
+	          return 'snow icon';
+	          break;
+	        default:
+	          return '';
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this5 = this;
@@ -21771,28 +21787,47 @@
 	      }
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'application-view' },
-	        _react2.default.createElement('input', { id: 'location-input', placeholder: 'Location',
-	          value: this.state.location,
-	          onChange: function onChange(e) {
-	            return _this5.setState({ location: e.target.value });
-	          } }),
+	        null,
 	        _react2.default.createElement(
-	          'button',
-	          { id: 'submit-button',
-	            onClick: function onClick() {
-	              return _this5.locationSubmitted();
-	            } },
-	          'Submit Location'
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          { className: 'location-title' },
-	          this.state.location.toUpperCase()
+	          'section',
+	          { className: 'application-view' },
+	          _react2.default.createElement(
+	            'h1',
+	            { id: 'greeting' },
+	            'Welcome to ',
+	            _react2.default.createElement(
+	              'span',
+	              { 'aria-label': 'weathrly' },
+	              'Weathrly'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'h3',
+	            { id: 'location-request' },
+	            'Enter or Change your Location for Weathrly Conditions!'
+	          ),
+	          _react2.default.createElement('input', { 'aria-label': 'location input', id: 'location-input', placeholder: 'Location',
+	            value: this.state.location,
+	            onChange: function onChange(e) {
+	              return _this5.setState({ location: e.target.value });
+	            } }),
+	          _react2.default.createElement(
+	            'button',
+	            { 'aria-label': 'submit location button', id: 'submit-button',
+	              onClick: function onClick() {
+	                return _this5.locationSubmitted();
+	              } },
+	            'Submit Location'
+	          ),
+	          _react2.default.createElement(
+	            'h3',
+	            { className: 'location-title' },
+	            this.state.location.toUpperCase()
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'section',
-	          null,
+	          { className: 'weather-info' },
 	          weatherInfo
 	        )
 	      );
@@ -23854,7 +23889,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Catamaran|Montserrat|Oswald);", ""]);
 
 	// module
-	exports.push([module.id, "#greeting {\n  top-margin: 30px;\n  font-family: \"Oswald\", sans-serif;\n  font-size: 4em; }\n\nspan {\n  color: #612180; }\n\nbody {\n  display: flex;\n  justify-content: center;\n  margin: auto;\n  text-align: center;\n  font-family: \"Catamaran\", sans-serif; }\n\n.location-title {\n  color: red;\n  font-family: \"Oswald\", sans-serif; }\n\nh1, h3, #location-input, #submit-button {\n  margin: 20px auto; }\n\nh1 {\n  font-size: 30px;\n  color: #0264ab; }\n\nul {\n  color: #0264ab; }\n\nli {\n  padding: 3px; }\n\n.summary {\n  font-family: \"Oswald\", sans-serif; }\n\n.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low, .snow-high, .snow-low {\n  padding: 10px;\n  border-bottom: solid #9d9d9d 1.5px; }\n\n.windy-icon, .thunderstorms-icon, .rain-icon, .snow-icon {\n  width: 40px;\n  height: 40px; }\n\n.sunny-icon {\n  width: 45px;\n  height: 45px; }\n\n.cloudy-icon {\n  width: 50px;\n  height: 50px; }\n\n.sunny-high {\n  color: #f1e700; }\n\n.cloudy-high {\n  color: #4f4c4c; }\n\n.windy-high {\n  color: #4cb33b; }\n\n.thunderstorms-high {\n  color: #7b0a9d; }\n\n.rain-high {\n  color: #0264ab; }\n\n.snow-high {\n  color: #00d1ab; }\n\n.sunny-low {\n  color: #ddd87d; }\n\n.cloudy-low {\n  color: #777575; }\n\n.windy-low {\n  color: #a4d79b; }\n\n.thunderstorms-low {\n  color: #4c2e5b; }\n\n.rain-low {\n  color: #467ba2; }\n\n.snow-low {\n  color: #279c7c; }\n", ""]);
+	exports.push([module.id, "#greeting {\n  top-margin: 30px;\n  font-family: \"Oswald\", sans-serif;\n  font-size: 4em; }\n\nspan {\n  color: #612180; }\n\n.application-view {\n  background: url(\"/images/sky-background.jpeg\") no-repeat center center fixed;\n  background-position: cover;\n  padding: 10px; }\n\nbody {\n  margin: auto;\n  text-align: center;\n  font-family: \"Catamaran\", sans-serif; }\n\n.weather-info {\n  display: flex;\n  justify-content: center; }\n\n.location-title {\n  color: black;\n  font-family: \"Oswald\", sans-serif; }\n\nh1, h3, #location-input, #submit-button {\n  margin: 20px auto; }\n\nh1 {\n  font-size: 30px;\n  color: white; }\n\nul {\n  color: #0264ab; }\n\nli {\n  padding: 3px;\n  line-height: 20px; }\n\n.summary {\n  font-family: \"Oswald\", sans-serif; }\n\n.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low, .snow-high, .snow-low {\n  padding: 10px;\n  border-bottom: solid #9d9d9d 1.5px; }\n\n.windy-icon, .thunderstorms-icon, .rain-icon, .snow-icon {\n  width: 40px;\n  height: 40px; }\n\n.sunny-icon {\n  width: 45px;\n  height: 45px; }\n\n.cloudy-icon {\n  width: 50px;\n  height: 50px; }\n\n.sunny-high {\n  color: #f1e700; }\n\n.cloudy-high {\n  color: #4f4c4c; }\n\n.windy-high {\n  color: #4cb33b; }\n\n.thunderstorms-high {\n  color: #7b0a9d; }\n\n.rain-high {\n  color: #0264ab; }\n\n.snow-high {\n  color: #00d1ab; }\n\n.sunny-low {\n  color: #9c9518; }\n\n.cloudy-low {\n  color: #666363; }\n\n.windy-low {\n  color: #348026; }\n\n.thunderstorms-low {\n  color: #4c2e5b; }\n\n.rain-low {\n  color: #467ba2; }\n\n.snow-low {\n  color: #279c7c; }\n\n@media (max-width: 860px) {\n  .weather-info {\n    display: block; } }\n\n@media (max-width: 700px) {\n  #greeting {\n    top-margin: 30px;\n    font-size: 3em; } }\n\n@media (max-width: 440px) {\n  #greeting {\n    top-margin: 30px;\n    line-height: 20px;\n    font-size: 2em; } }\n", ""]);
 
 	// exports
 
