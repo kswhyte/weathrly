@@ -34,7 +34,7 @@ export default class WeatherForecast extends React.Component {
       let uniqueKey = dayForecast.location + dayForecast.date
       return(
         <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
-          <li><img className={this.configureTypeStyling(dayForecast) + '-icon'} src={this.configureIconSource(dayForecast)} /></li>
+          <li><img className={this.configureTypeStyling(dayForecast) + '-icon'} src={this.configureIconSource(dayForecast)} aria-label={this.configureAriaLabel(dayForecast)}/></li>
           <li>Date: {dayForecast.date}</li>
           <li className='summary'>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
           <li className='summary'>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
@@ -112,6 +112,31 @@ export default class WeatherForecast extends React.Component {
         break
       case "snow":
         return '../images/svg/snowflake.svg'
+        break
+      default:
+        return ''
+    }
+  }
+
+  configureAriaLabel(dayForecast) {
+    switch (dayForecast.weatherType.type) {
+      case "sunny":
+        return 'sun icon'
+        break
+      case "cloudy":
+        return 'cloud icon'
+        break
+      case "windy":
+        return 'wind icon'
+        break
+      case "thunder storms":
+        return 'thunderstorm icon'
+        break
+      case "rain":
+        return 'rain icon'
+        break
+      case "snow":
+        return 'snow icon'
         break
       default:
         return ''
