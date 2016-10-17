@@ -21515,7 +21515,12 @@
 	        _react2.default.createElement(
 	          'h1',
 	          { id: 'greeting' },
-	          'Welcome to Weathrly'
+	          'Welcome to ',
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            'Weathrly'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'h3',
@@ -21612,7 +21617,11 @@
 	        return _react2.default.createElement(
 	          'ul',
 	          { key: uniqueKey, className: _this4.configureTypeStyling(dayForecast) + _this4.configureTempStyling(dayForecast) },
-	          _react2.default.createElement('li', { className: _this4.configureTypeStyling(dayForecast) + 'icon' }),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement('img', { className: _this4.configureTypeStyling(dayForecast) + '-icon', src: _this4.configureIconSource(dayForecast) })
+	          ),
 	          _react2.default.createElement(
 	            'li',
 	            null,
@@ -21693,22 +21702,22 @@
 	    value: function configureTypeStyling(dayForecast) {
 	      switch (dayForecast.weatherType.type) {
 	        case "sunny":
-	          return 'sunny-';
+	          return 'sunny';
 	          break;
 	        case "cloudy":
-	          return 'cloudy-';
+	          return 'cloudy';
 	          break;
 	        case "windy":
-	          return 'windy-';
+	          return 'windy';
 	          break;
 	        case "thunder storms":
-	          return 'thunderstorms-';
+	          return 'thunderstorms';
 	          break;
 	        case "rain":
-	          return 'rain-';
+	          return 'rain';
 	          break;
 	        case "snow":
-	          return 'snow-';
+	          return 'snow';
 	          break;
 	        default:
 	          return '';
@@ -21718,9 +21727,35 @@
 	    key: 'configureTempStyling',
 	    value: function configureTempStyling(dayForecast) {
 	      if (dayForecast.temp.high >= 70) {
-	        return 'high';
+	        return '-high';
 	      } else {
-	        return 'low';
+	        return '-low';
+	      }
+	    }
+	  }, {
+	    key: 'configureIconSource',
+	    value: function configureIconSource(dayForecast) {
+	      switch (dayForecast.weatherType.type) {
+	        case "sunny":
+	          return '../images/svg/sunny.svg';
+	          break;
+	        case "cloudy":
+	          return '../images/svg/cloudy.svg';
+	          break;
+	        case "windy":
+	          return '../images/svg/wind.svg';
+	          break;
+	        case "thunder storms":
+	          return '../images/svg/thunderstorm.svg';
+	          break;
+	        case "rain":
+	          return '../images/svg/rain.svg';
+	          break;
+	        case "snow":
+	          return '../images/svg/snowflake.svg';
+	          break;
+	        default:
+	          return '';
 	      }
 	    }
 	  }, {
@@ -21729,14 +21764,11 @@
 	      var _this5 = this;
 
 	      var weatherInfo = void 0;
-
 	      if (this.state.weather.length > 0) {
 	        weatherInfo = this.renderEachDaysForecast(this.state.weather);
 	      } else {
-	        // call a function to render an error message
 	        weatherInfo = this.renderLocationErrorMsg();
 	      }
-
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'application-view' },
@@ -23822,7 +23854,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Catamaran|Montserrat|Oswald);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n  display: flex;\n  justify-content: center;\n  margin: auto;\n  text-align: center;\n  font-family: \"Catamaran\", sans-serif; }\n\n.location-title {\n  color: red;\n  font-family: \"Oswald\", sans-serif; }\n\nh1, h3, #location-input, #submit-button {\n  margin: 20px auto; }\n\nh1 {\n  font-size: 30px;\n  color: #0264ab; }\n\nul {\n  color: #0264ab; }\n\nli {\n  padding: 3px; }\n\n.summary {\n  font-family: \"Oswald\", sans-serif; }\n\n.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low, .snow-high, .snow-low {\n  padding: 10px;\n  border-bottom: solid #9d9d9d 1.5px; }\n\n.sunny-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/sunny.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.cloudy-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/cloudy.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.thunderstorms-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/thunderstorm.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.rain-icon {\n  background: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../images/svg/sun.svg\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())) + ") cover no-repeat; }\n\n.sunny-high {\n  color: #f1e700; }\n\n.cloudy-high {\n  color: #4f4c4c; }\n\n.windy-high {\n  color: #4cb33b; }\n\n.thunderstorms-high {\n  color: #7b0a9d; }\n\n.rain-high {\n  color: #0264ab; }\n\n.snow-high {\n  color: #00d1ab; }\n\n.sunny-low {\n  color: #ddd87d; }\n\n.cloudy-low {\n  color: #777575; }\n\n.windy-low {\n  color: #a4d79b; }\n\n.thunderstorms-low {\n  color: #4c2e5b; }\n\n.rain-low {\n  color: #467ba2; }\n\n.snow-low {\n  color: #279c7c; }\n", ""]);
+	exports.push([module.id, "#greeting {\n  top-margin: 30px;\n  font-family: \"Oswald\", sans-serif;\n  font-size: 4em; }\n\nspan {\n  color: #612180; }\n\nbody {\n  display: flex;\n  justify-content: center;\n  margin: auto;\n  text-align: center;\n  font-family: \"Catamaran\", sans-serif; }\n\n.location-title {\n  color: red;\n  font-family: \"Oswald\", sans-serif; }\n\nh1, h3, #location-input, #submit-button {\n  margin: 20px auto; }\n\nh1 {\n  font-size: 30px;\n  color: #0264ab; }\n\nul {\n  color: #0264ab; }\n\nli {\n  padding: 3px; }\n\n.summary {\n  font-family: \"Oswald\", sans-serif; }\n\n.sunny-high, .sunny-low, .cloudy-high, .cloudy-low, .windy-high, .windy-low, .thunderstorms-high, .thunderstorms-low, .rain-high, .rain-low, .snow-high, .snow-low {\n  padding: 10px;\n  border-bottom: solid #9d9d9d 1.5px; }\n\n.windy-icon, .thunderstorms-icon, .rain-icon, .snow-icon {\n  width: 40px;\n  height: 40px; }\n\n.sunny-icon {\n  width: 45px;\n  height: 45px; }\n\n.cloudy-icon {\n  width: 50px;\n  height: 50px; }\n\n.sunny-high {\n  color: #f1e700; }\n\n.cloudy-high {\n  color: #4f4c4c; }\n\n.windy-high {\n  color: #4cb33b; }\n\n.thunderstorms-high {\n  color: #7b0a9d; }\n\n.rain-high {\n  color: #0264ab; }\n\n.snow-high {\n  color: #00d1ab; }\n\n.sunny-low {\n  color: #ddd87d; }\n\n.cloudy-low {\n  color: #777575; }\n\n.windy-low {\n  color: #a4d79b; }\n\n.thunderstorms-low {\n  color: #4c2e5b; }\n\n.rain-low {\n  color: #467ba2; }\n\n.snow-low {\n  color: #279c7c; }\n", ""]);
 
 	// exports
 

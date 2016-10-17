@@ -34,9 +34,7 @@ export default class WeatherForecast extends React.Component {
       let uniqueKey = dayForecast.location + dayForecast.date
       return(
         <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
-
           <li><img className={this.configureTypeStyling(dayForecast) + '-icon'} src={this.configureIconSource(dayForecast)} /></li>
-
           <li>Date: {dayForecast.date}</li>
           <li className='summary'>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
           <li className='summary'>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
@@ -61,7 +59,6 @@ export default class WeatherForecast extends React.Component {
       </div>
     )
   }
-
 
   configureTypeStyling(dayForecast) {
     switch (dayForecast.weatherType.type) {
@@ -123,13 +120,11 @@ export default class WeatherForecast extends React.Component {
 
   render() {
     let weatherInfo;
-
     if (this.state.weather.length > 0) {
       weatherInfo = this.renderEachDaysForecast(this.state.weather);
     } else {
       weatherInfo = this.renderLocationErrorMsg()
     }
-
     return(
       <div className='application-view'>
         <input id='location-input' placeholder='Location'
@@ -142,5 +137,4 @@ export default class WeatherForecast extends React.Component {
       </div>
     )
   }
-
 }
