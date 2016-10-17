@@ -1,11 +1,11 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import Foo from '../src/Foo';
+import WeatherForecast from '../app/components/WeatherForecast';
 
 describe("A suite", function() {
   it("contains spec with an expectation", function() {
-    expect(shallow(<WeatherForecast />).contains(<div className='application-view'>)).to.equal(true);
+    expect(shallow(<WeatherForecast />).contains(<div className='application-view' />)).to.equal(true);
   });
 
   it.skip("contains spec with an expectation", function() {
