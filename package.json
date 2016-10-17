@@ -36,6 +36,7 @@
     "css-loader": "^0.25.0",
     "enzyme": "^2.4.1",
     "html-webpack-plugin": "^2.22.0",
+    "image-webpack-loader": "^2.0.0",
     "js-dom": "0.0.1",
     "locus": "^1.2.0",
     "lodash": "^4.16.4",
