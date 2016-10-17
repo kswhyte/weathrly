@@ -34,7 +34,7 @@ export default class WeatherForecast extends React.Component {
       let uniqueKey = dayForecast.location + dayForecast.date
       return(
         <ul key={uniqueKey} className={this.configureTypeStyling(dayForecast) + this.configureTempStyling(dayForecast)}>
-          <li><img className={this.configureTypeStyling(dayForecast) + '-icon'} src={this.configureIconSource(dayForecast)} /></li>
+          <li><img className={this.configureTypeStyling(dayForecast) + '-icon'} src={this.configureIconSource(dayForecast)} aria-label={this.configureAriaLabel(dayForecast)}/></li>
           <li>Date: {dayForecast.date}</li>
           <li className='summary'>Today will be: {dayForecast.weatherType.type.toUpperCase()}</li>
           <li className='summary'>Chance of Rain: {Math.round(dayForecast.weatherType.chance * 100) + '%'}</li>
@@ -118,6 +118,31 @@ export default class WeatherForecast extends React.Component {
     }
   }
 
+  configureAriaLabel(dayForecast) {
+    switch (dayForecast.weatherType.type) {
+      case "sunny":
+        return 'sun icon'
+        break
+      case "cloudy":
+        return 'cloud icon'
+        break
+      case "windy":
+        return 'wind icon'
+        break
+      case "thunder storms":
+        return 'thunderstorm icon'
+        break
+      case "rain":
+        return 'rain icon'
+        break
+      case "snow":
+        return 'snow icon'
+        break
+      default:
+        return ''
+    }
+  }
+
   render() {
     let weatherInfo;
     if (this.state.weather.length > 0) {
@@ -127,10 +152,10 @@ export default class WeatherForecast extends React.Component {
     }
     return(
       <div className='application-view'>
-        <input id='location-input' placeholder='Location'
+        <input aria-label="location input" id='location-input' placeholder='Location'
           value={this.state.location}
           onChange={(e) => this.setState({location: e.target.value}) } />
-        <button id='submit-button'
+        <button aria-label="submit location button" id='submit-button'
           onClick={() => this.locationSubmitted()} >Submit Location</button>
         <h3 className='location-title'>{this.state.location.toUpperCase()}</h3>
         <section>{weatherInfo}</section>
