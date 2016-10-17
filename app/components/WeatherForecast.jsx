@@ -49,7 +49,7 @@ export default class WeatherForecast extends React.Component {
     return(
       <div>
         <h3>Sorry, there is NO DATA for that location.</h3>
-        <h3>Please Choose out of our Four Valid Locations:</h3>
+        <h3>Please Choose out of our <span>4 Valid Locations:</span></h3>
         <ul>
           <li>Castle-Rock</li>
           <li>Denver</li>
@@ -151,14 +151,18 @@ export default class WeatherForecast extends React.Component {
       weatherInfo = this.renderLocationErrorMsg()
     }
     return(
-      <div className='application-view'>
-        <input aria-label="location input" id='location-input' placeholder='Location'
+      <div>
+        <section className='application-view'>
+          <h1 id="greeting">Welcome to <span aria-label="weathrly">Weathrly</span></h1>
+          <h3 id="location-request">Enter or Change your Location for Weathrly Conditions!</h3>
+          <input aria-label="location input" id='location-input' placeholder='Location'
           value={this.state.location}
           onChange={(e) => this.setState({location: e.target.value}) } />
-        <button aria-label="submit location button" id='submit-button'
+          <button aria-label="submit location button" id='submit-button'
           onClick={() => this.locationSubmitted()} >Submit Location</button>
-        <h3 className='location-title'>{this.state.location.toUpperCase()}</h3>
-        <section>{weatherInfo}</section>
+          <h3 className='location-title'>{this.state.location.toUpperCase()}</h3>
+        </section>
+        <section className='weather-info'>{weatherInfo}</section>
       </div>
     )
   }
