@@ -10,16 +10,25 @@ span {
   color: $secondary-color;
 }
 
+.application-view {
+  background: url('/images/sky-background.jpeg') no-repeat center center fixed;
+  background-position: cover;
+  padding: 10px;
+}
+
 body {
-  display: flex;
-  justify-content: center;
   margin: auto;
   text-align: center;
   font-family: $catamaran;
 }
 
+.weather-info {
+  display: flex;
+  justify-content: center;
+}
+
 .location-title {
-  color: red;
+  color: black;
   font-family: $oswald;
 }
 
@@ -29,7 +38,15 @@ h1, h3, #location-input, #submit-button {
 
 h1 {
   font-size: 30px;
-  color: $primary-color;
+  color: white;
+}
+
+#location-input {
+  
+}
+
+#submit-button {
+
 }
 
 ul {
@@ -38,6 +55,7 @@ ul {
 
 li {
   padding: 3px;
+  line-height: 20px;
 }
 
 .summary {
@@ -110,4 +128,25 @@ li {
 
 .snow-low {
   color: $snow-low;
+}
+
+@media (max-width: 860px) {
+  .weather-info {
+    display: block;
+  }
+}
+
+@media (max-width: 700px) {
+  #greeting {
+    top-margin: 30px;
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 440px) {
+  #greeting {
+    top-margin: 30px;
+    line-height: 20px;
+    font-size: 2em;
+  }
 }

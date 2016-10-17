@@ -1,5 +1,4 @@
-require('babel-register')({presets: ['react', 'es2015']
-});
+require('babel-register')({ presets: ['react', 'es2015'] });
 require('babel-polyfill')
 
 // we need an instance of the dom
