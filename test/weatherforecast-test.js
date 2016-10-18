@@ -5,7 +5,6 @@ import { shallow, mount, render, spy } from 'enzyme';
 import WeatherForecast from '../app/components/WeatherForecast';
 import App from '../app/components/App';
 
-// const wrapper = shallow(<WeatherForecast />)
 describe("WeatherForecast | Unit", function() {
   it("should have a locationSubmitted function", function() {
     var weather = new WeatherForecast();

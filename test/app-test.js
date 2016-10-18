@@ -6,7 +6,7 @@ import App from '../app/components/App';
 describe('App | Feature', function() {
 
   it('should find the WeatherForecast component call', function() {
-    assert(shallow(<App />).contains(  <div> <WeatherForecast /> </div>));
+    assert(shallow(<App />).contains(<div> <WeatherForecast /> </div>));
     // expect(shallow(<App />).contains(<WeatherForecast />)).to.equal(true);
   });
 });

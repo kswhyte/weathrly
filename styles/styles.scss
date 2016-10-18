@@ -11,7 +11,7 @@ span {
 }
 
 .application-view {
-  background: url('/images/scattered-clouds-background-web.jpg') no-repeat center center fixed;
+  background: url('/images/sky-background-web.jpg') no-repeat center center fixed;
   background-position: cover;
   padding: 10px;
 }
@@ -22,14 +22,21 @@ body {
   font-family: $catamaran;
 }
 
+#location-request {
+  font-size: 16px;
+  font-weight: bold;
+  color: $location-info;
+}
+
 .weather-info {
   display: flex;
   justify-content: center;
 }
 
 .location-title {
-  color: black;
+  color: $location-info;
   font-family: $oswald;
+  font-size: 20px;
 }
 
 h1, h3, #location-input, #submit-button {
@@ -38,15 +45,31 @@ h1, h3, #location-input, #submit-button {
 
 h1 {
   font-size: 30px;
-  color: white;
+  color: $primary-color;
 }
 
 #location-input {
-
+  margin: 10px;
+  padding: 2px 4px 1px 4px;
+  font-family: $catamaran;
 }
 
 #submit-button {
+  margin: 10px;
+  border: none;
+  padding: 4px 4px 2px 4px;
+  background-color: $secondary-color;
+  text-decoration: none;
+  font-family: $catamaran;
+  color: white;
+  cursor: pointer;
+  outline: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
 
+#submit-button:hover {
+  background-color: $primary-color;
 }
 
 ul {
