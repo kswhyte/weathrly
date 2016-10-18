@@ -5,11 +5,20 @@ import { shallow, mount, render, spy } from 'enzyme';
 import WeatherForecast from '../app/components/WeatherForecast';
 import App from '../app/components/App';
 
-// const wrapper = shallow(<WeatherForecast />)
-describe("WeatherForecast | Unit", function() {
-  it("should have a locationSubmitted function", function() {
+describe("WeatherForecast Component | Unit", function() {
+  it("should have a url source", function() {
     var weather = new WeatherForecast();
     assert.isFunction(weather.locationSubmitted);
+  });
+
+  it("should have a location", function() {
+    var weather = new WeatherForecast();
+    expect(weather.state.location).to.equal('');
+  });
+
+  it("should have a locationSubmitted function", function() {
+    var weather = new WeatherForecast();
+    expect(weather.state.source).to.equal('https://weatherly-api.herokuapp.com/api/weather/');
   });
 });
 
@@ -19,16 +28,14 @@ describe("WeatherForecast | Feature", function() {
   });
 
   it("Should find an id for location input in the component file", function() {
-    // expect(shallow(<WeatherForecast />).is('#location-input')).to.equal(true);
-    assert(shallow(<WeatherForecast />).('#location-input'));
+    expect(shallow(<WeatherForecast />).find('#location-input').to.equal(true));
   });
 
-  it.skip("contains spec with an expectation", function() {
+  it("contains spec with an expectation", function() {
     expect(mount(<WeatherForecast />).find('.foo').length).to.equal(1);
   });
 
-
-  it('should allow me to click the submit button', function() {
+  it.skip('should allow me to click the submit button', function() {
      const wrapper = mount(<WeatherForecast />);
      const input = wrapper.find('.location-input')
      input.simulate('change', {target: {value: 'denver'}});

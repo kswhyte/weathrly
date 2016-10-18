@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 const $ = require('jquery')
-require('locus')
 
 export default class WeatherForecast extends React.Component {
   constructor() {
