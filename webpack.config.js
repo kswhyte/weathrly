@@ -11,7 +11,7 @@ module.exports = {
     main: PATHS.app + '/index.js'
   },
   output: {
-    path: PATHS.build,
+    path: __dirname,
     filename: '[name].bundle.js'
   },
   module: {
