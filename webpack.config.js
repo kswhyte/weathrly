@@ -1,5 +1,4 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -26,13 +25,6 @@ module.exports = {
        ]}
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: PATHS.build + '/index.html',
-      title: 'Weathrly',
-      inject: 'body'
-    })
-  ],
   resolve: {
     extensions: ['', '.scss', '.css', '.js', '.json', '.jsx', '.svg', '.png']
   }
